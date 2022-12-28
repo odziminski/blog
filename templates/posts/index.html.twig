@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Lista postów</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
 </head>
 <body>
 <h1>Lista postów</h1>
@@ -10,6 +12,8 @@
     <tr>
         <th>ID</th>
         <th>Tytuł</th>
+        <th>Treść</th>
+        <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
@@ -18,7 +22,9 @@
             <td>{{ post.id }}</td>
             <td>{{ post.title }}</td>
             <td>{{ post.body }}</td>
-
+            <td>
+                <button type="submit">Usuń</button>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
