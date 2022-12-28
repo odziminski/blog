@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AuthorRepository::class)
+ * @ORM\Table(name="authors")
  */
 class Author
 {
@@ -26,6 +27,13 @@ class Author
      * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {

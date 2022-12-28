@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @ORM\Table(name="posts")
  */
 class Post
 {
@@ -20,7 +21,7 @@ class Post
     /**
      * @ORM\Column(type="integer")
      */
-    private $user_id;
+    private $author_id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,6 +32,13 @@ class Post
      * @ORM\Column(type="string", length=5000)
      */
     private $body;
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
