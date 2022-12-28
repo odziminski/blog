@@ -37,14 +37,14 @@ class Post
         return $this->id;
     }
 
-    public function getUserId(): ?int
+    public function getAuthorId(): ?int
     {
-        return $this->user_id;
+        return $this->author_id;
     }
 
-    public function setUserId(int $user_id): self
+    public function setAuthorId(int $author_id): self
     {
-        $this->user_id = $user_id;
+        $this->author_id = $author_id;
 
         return $this;
     }
