@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista postów</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+</head>
+<body>
+<h1>Lista postów</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tytuł</th>
+        <th>Treść</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td><a href="{{ path('post_show', {'id': post.id}) }}">{{ post.title }}</a></td>
+            <td>{{ post.body }}</td>
+            <td>
+                <form action="{{ path('post_delete', {'id': post.id}) }}" method="post">
+{#                    <input type="hidden" name="_method" value="DELETE">#}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('delete') }}">
+                <button type="submit">Usuń</button>
+                </form>
+            </td>
+
+
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
