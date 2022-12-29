@@ -64,4 +64,8 @@ class PostsController extends AbstractController
         ]);
     }
 
+    public function homepage(){
+        return $this->render('posts/default.html.twig');
+    }
+
 }

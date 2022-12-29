@@ -1,6 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-lista:
-  path: /lista
-  controller: App\Controller\PostsController::index
+homepage:
+  path: /
+  controller: App\Controller\PostsController::homepage
