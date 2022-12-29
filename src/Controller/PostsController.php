@@ -3,17 +3,35 @@
 namespace App\Controller;
 
 use App\Entity\Post;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\EntityManagerInterface;
 
-
-
+/**
+ * @ApiResource
+ */
 class PostsController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     /**
-     * @Route("/posts", name="app_posts")
+     * @Route("/posts/json", name="posts_json", methods={"GET"})
+     */
+    public function getPostsToJSON(): Response
+    {
+        $posts = $this->entityManager->getRepository(Post::class)->findAll();
+
+        return $this->json($posts);
+    }
+    /**
+     * @Route("/lista", name="app_posts")
      */
     public function index(EntityManagerInterface $em): Response
     {
@@ -45,19 +63,5 @@ class PostsController extends AbstractController
             'post' => $post,
         ]);
     }
-
-
-    /**
-     * @Route("/posts/json", name="posts_json", methods={"GET"})
-     */
-    public function getPostsToJSON(): Response
-    {
-        $posts = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->findAll();
-
-        return $this->json($posts);
-    }
-
 
 }
