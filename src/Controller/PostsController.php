@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
+
 class PostsController extends AbstractController
 {
     /**
@@ -34,6 +35,7 @@ class PostsController extends AbstractController
         return $this->redirectToRoute('lista');
     }
 
+
     /**
      * @Route("/post/{id}", name="post_show", methods={"GET"})
      */
@@ -42,6 +44,19 @@ class PostsController extends AbstractController
         return $this->render('posts/show.html.twig', [
             'post' => $post,
         ]);
+    }
+
+
+    /**
+     * @Route("/posts/json", name="posts_json", methods={"GET"})
+     */
+    public function getPostsToJSON(): Response
+    {
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findAll();
+
+        return $this->json($posts);
     }
 
 
